@@ -29,7 +29,7 @@ namespace Digisegal.Controllers
         public IActionResult GetUser( int id)
         {
             var user = UnitOfWork.UserRepository.Get(id);
-            
+            var NAme = "aghdghsd0";
             return Ok(user);
         }
 
