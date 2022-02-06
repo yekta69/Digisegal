@@ -28,6 +28,7 @@ namespace Digisegal.Controllers
         {
             var user = UnitOfWork.UserRepository.Get(id);
             var tr = "test";
+            var op = "dddddddd";
             return Ok(user);
         }
 
