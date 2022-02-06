@@ -22,13 +22,21 @@ namespace Digisegal.Controllers
         }
      
 
-
-
         [HttpGet]
         [Route("Getuser")]
         public IActionResult GetUser( int id)
         {
             var user = UnitOfWork.UserRepository.Get(id);
+            var tr = "test";
+            return Ok(user);
+        }
+
+
+        [HttpGet]
+        [Route("GetAllUser")]
+        public IActionResult GetAllUser()
+        {
+            var user = UnitOfWork.UserRepository.GetAll().ToList();
             var tr = "test";
             return Ok(user);
         }
