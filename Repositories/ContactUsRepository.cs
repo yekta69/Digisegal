@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Digisegal.Repositories
 {
-    public class UserRepository : Repository<User>, IUserRepository
+    public class ContactUsRepository : Repository<ContactUs>, IContactUsRepository
     {
         private readonly StoreSegalDbContext _context;
-        public UserRepository(StoreSegalDbContext context) : base(context)
+        public ContactUsRepository(StoreSegalDbContext context) : base(context)
         {
             _context = context;
         }

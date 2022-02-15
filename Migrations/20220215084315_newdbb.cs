@@ -2,7 +2,7 @@
 
 namespace Digisegal.Migrations
 {
-    public partial class segal : Migration
+    public partial class newdbb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

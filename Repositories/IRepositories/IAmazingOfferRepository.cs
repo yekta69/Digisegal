@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Digisegal.Repositories.IRepositories
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IAmazingOfferRepository : IRepository<AmazingOffer>
     {
     }
 }

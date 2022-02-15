@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Digisegal.Repositories
@@ -13,9 +14,9 @@ namespace Digisegal.Repositories
     {
 
         
-        protected readonly SegalDbContext context;
+        protected readonly StoreSegalDbContext context;
         protected readonly DbSet<TEntity> dbset;
-        public Repository(SegalDbContext context)
+        public Repository(StoreSegalDbContext context)
         {
 
             this.context = context;
@@ -32,6 +33,11 @@ namespace Digisegal.Repositories
         }
 
         public IQueryable<TEntity> entity() => context.Set<TEntity>();
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
 
         public TEntity Get(object id)
         {

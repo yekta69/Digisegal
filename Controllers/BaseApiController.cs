@@ -1,13 +1,8 @@
-﻿using Digisegal.Uow;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Digisegal.Uow;
+using Digisegal.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace Digisegal.Controllers
 {
@@ -16,22 +11,24 @@ namespace Digisegal.Controllers
     public class BaseApiController : ControllerBase
     {
         private IUnitOfWork _UnitOfWork;
-       // private IMapper _mapper;
-      //  private IConfiguration _Configuration;
-      //  private readonly IHttpClientFactory _clientFactory;
-      //  private IWebHostEnvironment _Environment;
+        private IMapper _mapper;
+        // private IMapper _mapper;
+        //  private IConfiguration _Configuration;
+        //  private readonly IHttpClientFactory _clientFactory;
+        //  private IWebHostEnvironment _Environment;
         // private ISmsManager _SmsManager;
-       // private IUnitOfWork unitOfWork;
-      //  private IMapper mapper;
-      //  private IWebHostEnvironment environment;
-      //  private IHttpClientFactory clientFactory1;
+        // private IUnitOfWork unitOfWork;
+        //  private IMapper mapper;
+        //  private IWebHostEnvironment environment;
+        //  private IHttpClientFactory clientFactory1;
 
-        protected BaseApiController(IUnitOfWork unitOfWork/*IMapper mapper,*/ /*IWebHostEnvironment Environment,*/
+        protected BaseApiController(IUnitOfWork unitOfWork,IMapper mapper /*IWebHostEnvironment Environment,*/
             /*ISmsManager smsManager,*/ /*IHttpClientFactory clientFactory*//*, IConfiguration Configuration*/)
         {
          //   _Environment = Environment;
 
             _UnitOfWork = unitOfWork;
+            _mapper = mapper;
 
           //  _mapper = mapper;
 
@@ -50,15 +47,29 @@ namespace Digisegal.Controllers
         }
 
          protected IUnitOfWork UnitOfWork => _UnitOfWork;
+        protected IMapper Mapper => _mapper;
 
         // public ErrorDto Errors { get; set; }
         // protected IMapper Mapper => _mapper;
         // protected IMapper Mapper => _mapper;
         // // protected ISmsManager SmsManager => _SmsManager;
-     //   protected IConfiguration Configuration => _Configuration;
+        //   protected IConfiguration Configuration => _Configuration;
         // protected IConfiguration Configuration => _Configuration;
-       // protected IHttpClientFactory clientFactory => _clientFactory;
-      //  protected IWebHostEnvironment Environment => _Environment;
+        // protected IHttpClientFactory clientFactory => _clientFactory;
+        //  protected IWebHostEnvironment Environment => _Environment;
+
+
+        protected IActionResult ExceptionHandler(System.Exception ex)
+        {
+         
+            ErrorDto error = new ErrorDto
+            {
+                ErrorMessages = new List<string>()
+            };
+            error.ErrorMessages.Add("خطایی سمت سرور رخ داده است.");
+            return StatusCode(500, error);
+        }
 
     }
+
 }

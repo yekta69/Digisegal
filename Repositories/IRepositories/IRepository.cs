@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Digisegal.Repositories.IRepositories
@@ -12,6 +13,7 @@ namespace Digisegal.Repositories.IRepositories
         IEnumerable<TEntity> GetAll();
         Task<TEntity> GetAsync(object id);
         TEntity Get(object id);
+        IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
 
         //Add

@@ -30,7 +30,7 @@ namespace Digisegal
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
-            services.AddDbContext<SegalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Segal")));
+            services.AddDbContext<StoreSegalDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Segal")));
             services.AddMvc();
             services.AddControllers();
             services.AddScoped<IUserRepository , UserRepository>();
@@ -40,6 +40,7 @@ namespace Digisegal
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API WSVAP (WebSmartView)", Version = "v1" });
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
             });
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
